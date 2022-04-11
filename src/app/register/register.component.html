@@ -1,0 +1,75 @@
+<div class="container">
+  <h1>Register</h1>
+  <mat-card class="card">
+    <form class="form" (ngSubmit)="onSubmit($event)" method="post">
+      <mat-form-field class="form-group" appearance="fill">
+        <label>Username</label>
+        <input
+          matInput
+          placeholder="Enter Username Here"
+          (change)="changeInput('username', $event)"
+        />
+      </mat-form-field>
+      <mat-form-field class="form-group" appearance="fill">
+        <label>Firstname</label>
+        <input
+          matInput
+          placeholder="Enter Firstname Here"
+          (change)="changeInput('firstname', $event)"
+        />
+      </mat-form-field>
+      <mat-form-field class="form-group" appearance="fill">
+        <label>Lastname</label>
+        <input
+          matInput
+          placeholder="Enter Lastname Here"
+          (change)="changeInput('lastname', $event)"
+        />
+      </mat-form-field>
+      <mat-form-field class="form-group" appearance="fill">
+        <label>Email</label>
+        <input
+          matInput
+          placeholder="Enter Email Here"
+          (change)="changeInput('email', $event)"
+        />
+      </mat-form-field>
+      <mat-form-field class="form-group" appearance="fill">
+        <label>Password</label>
+        <input
+          type="password"
+          matInput
+          placeholder="Enter Password Here"
+          (change)="changeInput('password', $event)"
+        />
+      </mat-form-field>
+      <mat-form-field appearance="fill">
+        <label>Type</label>
+        <mat-select (selectionChange)="changeInput('type', $event)">
+          <mat-option value="customer">Customer</mat-option>
+          <mat-option value="admin">Admin</mat-option>
+        </mat-select>
+      </mat-form-field>
+      <br>
+
+      <mat-card *ngIf="isError" class="alert-error">
+        Error: {{ errorMessage }}
+      </mat-card>
+
+      <mat-card *ngIf="isSuccess" class="alert-success">
+        Register Success
+      </mat-card>
+      <mat-card-actions class="action">
+        <button type="submit" mat-raised-button color="primary">
+          Register
+        </button>
+      </mat-card-actions>
+      <div class="footer">
+        <p>
+          Or already have account?
+          <a routerLink="/">Login</a>
+        </p>
+      </div>
+    </form>
+  </mat-card>
+</div>
