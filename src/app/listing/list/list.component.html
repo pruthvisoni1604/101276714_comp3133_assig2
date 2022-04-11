@@ -1,0 +1,71 @@
+<div class="container">
+  <mat-toolbar>
+    <h3>Listing</h3>
+    <span class="example-spacer"></span>
+    <button (click)="onLogout()" mat-raised-button color="warn" aria-label="">
+      LOGOUT
+    </button>
+  </mat-toolbar>
+  <div class="content">
+    <form (ngSubmit)="onSearch($event)" method="post">
+      <mat-form-field class="form-group" appearance="fill">
+        <label>Search listings</label>
+        <input
+          matInput
+          (change)="changeSearch('name', $event)"
+          placeholder="Ex. Sea face home..."
+        />
+      </mat-form-field>
+      <button type="submit" mat-raised-button color="primary">Search</button>
+    </form>
+    <div>
+      <div class="action">
+        <button
+          *ngIf="createListing"
+          (click)="addListing()"
+          mat-raised-button
+          color="primary"
+          aria-label=""
+        >
+          Add New Listing
+        </button>
+      </div>
+      <div class="content-main">
+        <mat-card *ngIf="isError" class="alert-error">
+          {{ errorMessage }}
+        </mat-card>
+        <div *ngIf="isLoading; else content" class="loading">Loading...</div>
+        <ng-template #content>
+          <mat-grid-list cols="2">
+            <mat-grid-tile class="item" *ngFor="let item of response">
+              <table class="table">
+                <thead>
+                  <tr>
+                    <th scope="col">{{ item.listing_title }}</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>{{ item.description }}</td>
+                  </tr>
+                  <tr>
+                    <td> {{ item.street }}, {{ item.city }}, {{ item.postal_code }}</td>
+                  </tr>
+                  <tr>
+                    <td>({{ item.username }}) {{ item.email }}</td>
+                  </tr>
+                  <tr>
+                    <th>
+                      <h2>Price: ${{ item.price }}</h2>
+                    </th>
+                  </tr>
+                </tbody>
+              </table>
+              
+            </mat-grid-tile>
+          </mat-grid-list>
+        </ng-template>
+      </div>
+    </div>
+  </div>
+</div>

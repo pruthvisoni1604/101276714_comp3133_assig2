@@ -1,0 +1,37 @@
+<div class="container">
+  <h1>Login</h1>
+  <mat-card class="card">
+    <form class="form" (ngSubmit)="onSubmit($event)" method="post">
+      <mat-form-field class="form-group" appearance="fill">
+        <label>Username</label>
+        <input
+          matInput
+          placeholder="Enter Username..."
+          (change)="changeInput('username', $event)"
+        />
+      </mat-form-field>
+      <mat-form-field class="form-group" appearance="fill">
+        <label>Password</label>
+        <input
+          type="password"
+          matInput
+          placeholder="Enter Password..."
+          (change)="changeInput('password', $event)"
+        />
+      </mat-form-field>
+      <br>
+      <mat-card *ngIf="isError" class="alert-error">
+        Error: {{ errorMessage }}
+      </mat-card>
+      <mat-card-actions class="action">
+        <button type="submit" mat-raised-button color="primary">Login</button>
+      </mat-card-actions>
+      <div class="footer">
+        <p>
+          Or dont have account?
+          <a routerLink="/register">Register</a>
+        </p>
+      </div>
+    </form>
+  </mat-card>
+</div>
